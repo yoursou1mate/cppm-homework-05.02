@@ -8,8 +8,20 @@
 #include <iostream>
 #include <string>
 
+class Figure
+{
+protected:
+    int sides_count = 0;
+    std::string name = "Figure :";
+public:
+     virtual void print_info ()
+    {
+        std::cout << name << std::endl;
+        std::cout << sides_count << std::endl;
+    }
+};
 
-class Triangle
+class Triangle : public Figure
 {
 protected:
     int a = 0;
@@ -30,47 +42,47 @@ public:
         this->C = C;
     }
     
-    void get_sides ()
+    std::string get_sides ()
     {
-      std::cout << "a=" << a << " b=" << b << " c=" << c << std::endl;
+        std::string all_sides = "a=" + std::to_string(a) + " b=" + std::to_string(b) + " c=" + std::to_string(c);
+        return all_sides;
     }
     
-    void get_angles ()
+    std::string get_angles ()
     {
-      std::cout << "A=" << A << " B=" << B << " C=" << C << std::endl;
+        std::string all_angles = "A=" + std::to_string(A) + " B=" + std::to_string(B) + " C=" + std::to_string(C);
+        return all_angles;
     }
     
-    void print_info ()
+   void print_info() override
     {
         std::cout << "Sides: ";
-        get_sides();
+        std::cout << get_sides() << std::endl;
         std::cout << "Angles: ";
-        get_angles();
+        std::cout << get_angles() << std::endl;
     }
 };
 
 class Right_triangle : public Triangle
 {
-private:
-    int C = 90;
 public:
-    Right_triangle (int a, int b, int c, int A, int B) : Triangle (a, b, c, A, B, Right_triangle::C = 90){};
+    Right_triangle (int a, int b, int c, int A, int B) : Triangle (a, b, c, A, B, C = 90){};
 };
 
 class Isosceles_triangle : public Triangle
 {
 public:
-    Isosceles_triangle (int a, int b, int A, int B) : Triangle (a, b, c = a, A, B, C = A ){};
+    Isosceles_triangle (int a, int b, int A, int B) : Triangle (a, b, a, A, B, A ){};
 };
 
 class Equilateral_triangle : public Triangle
 {
 public:
-    Equilateral_triangle (int a) : Triangle (a, b = a, c = a, A = 60, B = 60, C = 60){};
+    Equilateral_triangle (int a) : Triangle (a, a, a, A = 60, B = 60, C = 60){};
 };
 
 
-class Quadrilateral
+class Quadrilateral : public Figure
 {
 protected:
     int a = 0;
@@ -95,22 +107,24 @@ public:
         this->D = D;
     }
     
-    void get_sides ()
+    std::string get_sides ()
     {
-      std::cout << "a=" << a << " b=" << b << " c=" << c << " d=" << d << std::endl;
+        std::string all_sides = "a=" + std::to_string(a) + " b=" + std::to_string(b) + " c=" + std::to_string(c) + " d=" + std::to_string(d);
+        return all_sides;
     }
     
-    void get_angles ()
+    std::string get_angles ()
     {
-      std::cout << "A=" << A << " B=" << B << " C=" << C << " D=" << D << std::endl;
+        std::string all_angles = "A=" + std::to_string(A) + " B=" + std::to_string(B) + " C=" + std::to_string(C) + " D=" + std::to_string(D);
+        return all_angles;
     }
     
-    void print_info ()
+    void print_info () override
     {
         std::cout << "Sides: ";
-        get_sides();
+        std::cout << get_sides() << std::endl;
         std::cout << "Angles: ";
-        get_angles();
+        std::cout << get_angles() << std::endl;
     }
 };
 
