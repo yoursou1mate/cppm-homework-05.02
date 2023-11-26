@@ -66,7 +66,7 @@ public:
 class Right_triangle : public Triangle
 {
 public:
-    Right_triangle (int a, int b, int c, int A, int B) : Triangle (a, b, c, A, B, C = 90){};
+    Right_triangle (int a, int b, int c, int A, int B) : Triangle (a, b, c, A, B, 90){};
 };
 
 class Isosceles_triangle : public Triangle
@@ -78,7 +78,7 @@ public:
 class Equilateral_triangle : public Triangle
 {
 public:
-    Equilateral_triangle (int a) : Triangle (a, a, a, A = 60, B = 60, C = 60){};
+    Equilateral_triangle (int a) : Triangle (a, a, a, 60, 60, 60){};
 };
 
 
@@ -131,7 +131,7 @@ public:
 class Rectangle : public Quadrilateral
 {
 public:
-    Rectangle (int a, int b) : Quadrilateral (a, b, c = a, d = b, A = 90, B = A, C = A, D = A){};
+    Rectangle (int a, int b) : Quadrilateral (a, b, a, b, 90, 90, 90, 90){};
 };
 
 
@@ -144,7 +144,7 @@ public:
 class Parallelogram : public Quadrilateral
 {
 public:
-    Parallelogram (int a, int b, int A, int B) : Quadrilateral (a, b, c = a, d = b, A, B, C = A, D = B){};
+    Parallelogram (int a, int b, int A, int B) : Quadrilateral (a, b, a, b, A, B, A, B){};
 };
 
 class Rhomb : public Parallelogram
@@ -153,62 +153,67 @@ public:
     Rhomb (int a, int A, int B) : Parallelogram (a, b = a, A, B){};
 };
 
-
+void printInfo (Figure* figure)
+{
+    figure->print_info();
+}
 
 int main(int argc, const char * argv[]) {
   
     Triangle triangle (25,27,38,70,65,89);
     std::cout << "Triangle:" << std::endl;
-    triangle.print_info();
+    Figure* par_triangle = &triangle;
+    par_triangle->print_info();
     std::cout << std::endl;
     
     Right_triangle right_Triangle (40,35,10,78,34);
     std::cout << "Right triangle:" << std::endl;
-    right_Triangle.print_info();
+    Figure* par_right_triangle = &right_Triangle;
+    par_right_triangle->print_info();
     std::cout << std::endl;
     
     
     Isosceles_triangle isosceles_Triangle (45,70,50,80);
     std::cout << "Isosceles triangle:" << std::endl;
-    isosceles_Triangle.print_info();
+    Figure* par_isosceles_triangle = &isosceles_Triangle;
+    par_isosceles_triangle->print_info();
     std::cout << std::endl;
     
     Equilateral_triangle equilateral_Triangle (45);
     std::cout << "Equilateral triangle:" << std::endl;
-    equilateral_Triangle.print_info();
+    Figure* par_equilateral_triangle = &equilateral_Triangle;
+    par_equilateral_triangle->print_info();
     std::cout << std::endl;
     
     Quadrilateral quadrilateral (45,65,35,75,60,60,30,30);
     std::cout << "Quadrilateral:" << std::endl;
-    quadrilateral.print_info();
+    Figure* par_quadrilateral = &quadrilateral;
+    par_quadrilateral->print_info();
     std::cout << std::endl;
     
     Rectangle rectangle (45, 65);
     std::cout << "Rectangle:" << std::endl;
-    rectangle.print_info();
+    Figure* par_rectangle = &rectangle;
+    par_rectangle->print_info();
     std::cout << std::endl;
     
     Square square (45);
     std::cout << "Square:" << std::endl;
-    square.print_info();
+    Figure* par_square = &square;
+    par_square->print_info();
     std::cout << std::endl;
     
     Parallelogram parallelogram (45,75,35,55);
     std::cout << "Parallelogram:" << std::endl;
-    parallelogram.print_info();
+    Figure* par_parallelogram = &parallelogram;
+    par_parallelogram->print_info();
     std::cout << std::endl;
     
     Rhomb rhomb (45,35,55);
     std::cout << "Rhomb:" << std::endl;
-    rhomb.print_info();
+    Figure* par_rhomb = &rhomb;
+    par_rhomb->print_info();
     std::cout << std::endl;
-    
-    
-    
-    
-    
-    
-    
     
     return 0;
 }
